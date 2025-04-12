@@ -14,6 +14,22 @@ class ImageController extends Controller
 {
     function get(Image $image)
     {
-        return Storage::disk('public')->download($image->path);
+        return response()->file(Storage::disk('public')->path($image->path));
+
+    }
+
+    public function add(Request $request)
+    {
+        $path = $request->file('photo')->store('images', 'public');
+        $image = Image::create([
+            'path' => $path
+        ]);
+        return new SuccessResponse($image);
+    }
+
+    public function delete(Image $image)
+    {
+        $image->delete();
+        return new SuccessResponse([]);
     }
 }

@@ -17,6 +17,8 @@ services:
             - app-resources:/var/www/resources
             - ./routes:/var/www/routes
             - ./database:/var/www/database
+            - ./bootstrap:/var/www/bootstrap
+
         networks:
             - app-network
 
@@ -77,4 +79,6 @@ volumes:
     app-routes:
         driver: local
     app-database:
+        driver: local
+    app-bootstrap:
         driver: local
