@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('materials', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\Image::class)->nullable()->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(\App\Models\Image::class)->nullable()->constrained();
             $table->string('name')->unique();
             $table->string('description');
             $table->integer('price');
