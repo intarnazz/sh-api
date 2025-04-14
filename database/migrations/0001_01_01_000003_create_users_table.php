@@ -12,12 +12,9 @@ return new class extends Migration {
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(model: \App\Models\Image::class)->nullable()->constrained()->cascadeOnDelete();
             $table->string('login')->unique();
-//            $table->string('role')->default('user');
             $table->string('password');
             $table->string('api_token')->nullable();
-
             $table->timestamps();
         });
 
