@@ -10,14 +10,14 @@ services:
         container_name: sh_api
         working_dir: /var/www
         volumes:
-            - app-data:/var/www
+            - ./:/var/www
             - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
-            - app-storage:/var/www/storage
-            - ./app:/var/www/app
+            - ./storage:/var/www/storage
+            - app-app:/var/www/app
             - app-resources:/var/www/resources
             - ./routes:/var/www/routes
             - ./database:/var/www/database
-            - ./bootstrap:/var/www/bootstrap
+            - app-bootstrap:/var/www/bootstrap
 
         networks:
             - app-network

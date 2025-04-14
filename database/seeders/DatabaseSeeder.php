@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
             ]);
             Material::create([
                 'image_id' => $image->id,
-                'name' => $faker->word,
+                'name' => $faker->unique()->word,
                 'description' => $faker->text(200),
                 'price' => $faker->numberBetween(1000, 20000),
             ]);
