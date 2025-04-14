@@ -22,9 +22,11 @@ class MaterialRequest extends FormRequest
      */
     public function rules(): array
     {
+        $id = $this->route('material');
         return [
-            "name" => [
-                Rule::unique('materials')->ignore($this->route('material')),
+            'name' => [
+                'required',
+                Rule::unique('materials')->ignore($id ?? null),
             ],
             "description" => "required",
             "price" => "required|integer",
