@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ClientRequest;
 use App\Http\Requests\MaterialRequest;
+use App\Http\Resources\PaginResponse;
 use App\Models\Client;
 use App\Models\Material;
 use App\Models\User;
@@ -23,8 +24,13 @@ class MaterialController extends Controller
 
     function all()
     {
-        $materials = Material::with('image')->get();
-        return new SuccessResponse($materials);
+        $limit = $request->limit ?? 3;
+        $offset = $request->offset ?? 0;
+        $materials = Material::with('image')
+            ->offset($offset)
+            ->limit($limit)
+            ->get();
+        return new PaginResponse([$materials, [$limit, $offset, Material::count()]]);
     }
 
     public function add(MaterialRequest $request)
